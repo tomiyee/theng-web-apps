@@ -6,11 +6,17 @@ import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 const Landing: React.FC = () => {
   return (
     <Box component={'main'} width='100%'>
+      <Typography variant="h3">Tom's Utilities!</Typography>
       <Box display='flex' flexWrap={'wrap'} gap={2}>
         <AppComponent
           title="Fare Share"
           Icon={PriceCheckIcon}
           path="fare-share"
+        />
+        <AppComponent
+          title="Num Pad Trainer"
+          Icon={PriceCheckIcon}
+          path="num-pad-trainer"
         />
       </Box>
     </Box>

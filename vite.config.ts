@@ -7,12 +7,13 @@ export default defineConfig({
   base: "/theng-web-apps",
   plugins: [
     VitePWA({
+      base: '/theng-web-apps/',
       registerType: "autoUpdate",
       manifest: {
         "name": "Theng Web Apps",
         "short_name": "Theng Apps",
-        "start_url": "/index.html",
-        "scope": "/",
+        "start_url": "/theng-web-apps/",
+        "scope": "/theng-web-apps/",
         "display": "standalone",
         "background_color": "#ffffff",
         "theme_color": "#000000",
