@@ -12,6 +12,7 @@ export default defineConfig({
         "name": "Theng Web Apps",
         "short_name": "Theng Apps",
         "start_url": "/index.html",
+        "scope": "/",
         "display": "standalone",
         "background_color": "#ffffff",
         "theme_color": "#000000",
