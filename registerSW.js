@@ -1,1 +1,1 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/theng-web-apps/sw.js', { scope: '/theng-web-apps/' })})}
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/theng-web-appssw.js', { scope: '/theng-web-apps' })})}
