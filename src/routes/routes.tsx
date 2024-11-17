@@ -7,6 +7,7 @@ import { BASE_URL } from '../constants';
 const LandingPage = lazy(() => import('../views/Landing/Landing'));
 const FareSharePage = lazy(() => import('../views/FareShare/FareShare'));
 const NumPadTrainerPage = lazy(() => import('../views/NumPadTrainer/NumPadTrainer'));
+const RicePurityPage = lazy(() => import('../views/RicePurity/RicePurity'));
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: 'num-pad-trainer',
         element: <NumPadTrainerPage />,
+      },
+      {
+        path: 'rice-purity-test',
+        element: <RicePurityPage />,
       },
     ],
   },
