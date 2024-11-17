@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
-import { Dialpad } from '@mui/icons-material';
+import { Checklist, Dialpad } from '@mui/icons-material';
 
 const Landing: React.FC = () => {
   return (
@@ -10,6 +10,7 @@ const Landing: React.FC = () => {
       <Box display="flex" flexWrap={'wrap'} gap={2}>
         <AppComponent title="Fare Share" Icon={PriceCheckIcon} path="fare-share" />
         <AppComponent title="Num Pad Trainer" Icon={Dialpad} path="num-pad-trainer" />
+        <AppComponent title="Rice Purity Test" Icon={Checklist} path="rice-purity-test" />
       </Box>
     </Box>
   );
