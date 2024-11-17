@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 type StoreState = {
   checked: boolean[];
@@ -15,8 +15,8 @@ const useRicePurityStore = create(
       },
     }),
     {
-      name: "purity-test",
-    }
-  )
+      name: 'purity-test',
+    },
+  ),
 );
 export default useRicePurityStore;
