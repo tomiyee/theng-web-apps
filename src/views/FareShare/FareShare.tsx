@@ -44,14 +44,14 @@ const FareShare: React.FC<FareShareProps> = () => {
         itemizedContributions: deleteItem
           ? old.itemizedContributions.filter((lineItem) => lineItem.id !== itemId)
           : old.itemizedContributions.map((lineItem) => {
-              // Do not modify irrelevant line items
-              if (lineItem.id !== itemId) return lineItem;
-              return {
-                ...lineItem,
-                itemCost: itemCost ?? lineItem.itemCost,
-                itemName: itemName ?? lineItem.itemName,
-              };
-            }),
+            // Do not modify irrelevant line items
+            if (lineItem.id !== itemId) return lineItem;
+            return {
+              ...lineItem,
+              itemCost: itemCost ?? lineItem.itemCost,
+              itemName: itemName ?? lineItem.itemName,
+            };
+          }),
       })),
     );
   };
