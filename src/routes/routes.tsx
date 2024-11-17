@@ -1,14 +1,12 @@
-import { createBrowserRouter } from "react-router-dom";
-import ErrorPage from "../views/ErrorPage/ErrorPage";
-import { MainLayout } from "./MainLayout";
-import { lazy } from "react";
-import { BASE_URL } from "../constants";
+import { createBrowserRouter } from 'react-router-dom';
+import ErrorPage from '../views/ErrorPage/ErrorPage';
+import { MainLayout } from './MainLayout';
+import { lazy } from 'react';
+import { BASE_URL } from '../constants';
 
-const LandingPage = lazy(() => import("../views/Landing/Landing"));
-const FareSharePage = lazy(() => import("../views/FareShare/FareShare"));
-const NumPadTrainerPage = lazy(
-  () => import("../views/NumPadTrainer/NumPadTrainer"),
-);
+const LandingPage = lazy(() => import('../views/Landing/Landing'));
+const FareSharePage = lazy(() => import('../views/FareShare/FareShare'));
+const NumPadTrainerPage = lazy(() => import('../views/NumPadTrainer/NumPadTrainer'));
 
 export const router = createBrowserRouter([
   {
@@ -17,15 +15,15 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "",
+        path: '',
         element: <LandingPage />,
       },
       {
-        path: "fare-share",
+        path: 'fare-share',
         element: <FareSharePage />,
       },
       {
-        path: "num-pad-trainer",
+        path: 'num-pad-trainer',
         element: <NumPadTrainerPage />,
       },
     ],
