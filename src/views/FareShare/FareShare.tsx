@@ -1,6 +1,6 @@
 import { Box, Button, Grid2, IconButton, Stack, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import _, { update } from "lodash";
+import _ from "lodash";
 import FloatField from "../../components/FloatField";
 import { Clear } from "@mui/icons-material";
 
