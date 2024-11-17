@@ -6,7 +6,9 @@ import { BASE_URL } from "../constants";
 
 const LandingPage = lazy(() => import("../views/Landing/Landing"));
 const FareSharePage = lazy(() => import("../views/FareShare/FareShare"));
-
+const NumPadTrainerPage = lazy(
+  () => import("../views/NumPadTrainer/NumPadTrainer"),
+);
 
 export const router = createBrowserRouter([
   {
@@ -16,12 +18,16 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <LandingPage/>
+        element: <LandingPage />,
       },
       {
         path: "fare-share",
-        element: <FareSharePage/>
-      }
-    ]
+        element: <FareSharePage />,
+      },
+      {
+        path: "num-pad-trainer",
+        element: <NumPadTrainerPage />,
+      },
+    ],
   },
 ]);

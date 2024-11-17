@@ -4,7 +4,8 @@ export default function ErrorPage() {
   const error = useRouteError();
   console.error(error);
 
-  const errorMessage = error instanceof Error ? error.message : "An unknown error occured";
+  const errorMessage =
+    error instanceof Error ? error.message : "An unknown error occured";
 
   return (
     <div id="error-page">
