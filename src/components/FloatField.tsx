@@ -1,9 +1,8 @@
-import { TextField, TextFieldProps } from "@mui/material"
-import React, { useState } from "react"
-
+import { TextField, TextFieldProps } from '@mui/material';
+import React, { useState } from 'react';
 
 type FloatFieldProps = {
-  textFieldProps: Omit<TextFieldProps, keyof FloatFieldProps>
+  textFieldProps: Omit<TextFieldProps, keyof FloatFieldProps>;
   value: number;
   /** Called as the user makes changes to the value */
   onChange?: (newValue: number) => void;
@@ -11,11 +10,11 @@ type FloatFieldProps = {
   onCommit?: (newValue: number) => void;
   /** Default 2 */
   precision?: number;
-}
+};
 
 /** State is controlled */
 const FloatField: React.FC<FloatFieldProps> = (props) => {
-  const {textFieldProps, value, onChange, onCommit, precision = 2} = props;
+  const { textFieldProps, value, onChange, onCommit, precision = 2 } = props;
   const [localValue, setLocalValue] = useState(value.toFixed(precision));
   return (
     <TextField
@@ -37,8 +36,8 @@ const FloatField: React.FC<FloatFieldProps> = (props) => {
       }}
       {...textFieldProps}
     />
-  )
+  );
 };
-export default FloatField
+export default FloatField;
 
-const isApproxEqual = (a: number, b: number) =>  Math.abs(a - b) < 0.001
+const isApproxEqual = (a: number, b: number) => Math.abs(a - b) < 0.001;

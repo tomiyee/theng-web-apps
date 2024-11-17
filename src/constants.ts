@@ -1,1 +1,1 @@
-export const BASE_URL = "theng-web-apps";
+export const BASE_URL = 'theng-web-apps';
