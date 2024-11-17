@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
+    "style": "prettier . --write",
     "lint": "eslint .",
     "preview": "vite preview"
   },
