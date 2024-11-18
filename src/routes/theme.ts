@@ -51,6 +51,25 @@ export const themeOptions: ThemeOptions = {
         size: 'small',
       },
     },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          padding: 16,
+          "&:last-child": {
+            paddingBottom: 16
+          },
+        }
+      }
+    },
+    // Mui Skeletons have a transform that make them appear shorter
+    MuiSkeleton: {
+      styleOverrides: {
+        root: {
+          transformOrigin: "unset",
+          transform: "unset",
+        },
+      },
+    },
     MuiFab: {
       defaultProps: {
         size: 'small',
