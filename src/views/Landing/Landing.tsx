@@ -14,7 +14,7 @@ const Landing: React.FC = () => {
           <AppComponent title="Fare Share" Icon={PriceCheckIcon} path="fare-share" />
           <AppComponent title="Num Pad Trainer" Icon={Dialpad} path="num-pad-trainer" /> 
           */}
-          <AppComponent title="Rice Purity Test" Icon={Checklist} path="rice-purity-test" description="The normal rice purity test except it remnembers your selection, all stored locally in your browser." />
+          <AppComponent title="Rice Purity Test" Icon={Checklist} path="rice-purity-test" description="The rice purity test except it remembers your selection, all stored locally in your browser." />
           <Box />
           <Box />
           <Box />
