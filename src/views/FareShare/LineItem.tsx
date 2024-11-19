@@ -1,7 +1,7 @@
 import { Grid2, IconButton, TextField } from "@mui/material";
-import { LineItem } from "./FareShare";
 import FloatField from "../../components/FloatField";
 import { Clear } from "@mui/icons-material";
+import { LineItem } from "./fareShareUtils";
 
 type LineItemProps = {
   /** The number of grid columns to indent by */
@@ -18,13 +18,18 @@ const LineItemSection: React.FC<LineItemProps> = (props) => {
     <>
       <Grid2 size={indent} />
       <Grid2 size={7} display='flex'>
-        <IconButton onClick={onDelete} >
-          <Clear />
-        </IconButton>
         <TextField
           fullWidth
           value={lineItem.itemName}
           onChange={(e) => onChange({ ...lineItem, itemName: e.target.value })}
+          slotProps={{
+            input: {
+              startAdornment:
+                <IconButton onClick={onDelete} >
+                  <Clear />
+                </IconButton>
+            }
+          }}
         />
       </Grid2>
       <Grid2 size={4}>
@@ -35,7 +40,6 @@ const LineItemSection: React.FC<LineItemProps> = (props) => {
           }
         />
       </Grid2>
-
     </>
   );
 }

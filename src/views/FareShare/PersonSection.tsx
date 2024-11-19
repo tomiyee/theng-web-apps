@@ -1,9 +1,9 @@
-import React from "react"
-import { IndividualContribution, LineItem, newLineItem } from "./FareShare";
+import React from "react";
 import { Button, Divider, Grid2, IconButton, TextField, Typography } from "@mui/material";
 import LineItemSection from "./LineItem";
 import _ from "lodash";
 import { Clear } from "@mui/icons-material";
+import { IndividualContribution, LineItem, newLineItem } from "./fareShareUtils";
 
 
 
@@ -35,18 +35,23 @@ const PersonSection: React.FC<PersonSectionProps> = (props) => {
   return (
     <>
       <Grid2 size={8} display='flex'>
-        <IconButton onClick={onDelete} >
-          <Clear />
-        </IconButton>
         <TextField
           fullWidth
           label="Name of Individual"
           value={value.name}
+          slotProps={{
+            input: {
+              startAdornment:
+                <IconButton onClick={onDelete} >
+                  <Clear />
+                </IconButton>
+            }
+          }}
           onChange={(e) => onChange({ ...value, name: e.target.value })}
         />
       </Grid2 >
       <Grid2 size={4} display='flex' alignItems='center' gap={1}>
-        <Typography fontWeight='bold'>Their total:</Typography>
+        <Typography fontWeight='bold'>Subtotal:</Typography>
         <Typography>${personalSubtotal.toFixed(2)}</Typography>
       </Grid2>
       {value.itemizedContributions.map(lineItem => (
@@ -59,19 +64,22 @@ const PersonSection: React.FC<PersonSectionProps> = (props) => {
         />
       ))}
       <Grid2 size={1} />
-      <Grid2 size={7}>
+      <Grid2 size={11} pb={1}>
         <Button
           variant="outlined"
           fullWidth
           onClick={() =>
             onChange({
               ...value,
-              itemizedContributions: [...value.itemizedContributions, newLineItem()]
+              itemizedContributions: [...value.itemizedContributions, newLineItem(value.itemizedContributions.length + 1)]
             })
           }
         >
           Add Line Item
         </Button>
+      </Grid2>
+      <Grid2 size={12}>
+        <Divider />
       </Grid2>
     </>
   )

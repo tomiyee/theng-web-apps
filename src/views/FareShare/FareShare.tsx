@@ -1,62 +1,16 @@
-import { Box, Button, Card, CardContent, CardHeader, Divider, Grid2, IconButton, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, Divider, Grid2, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import _ from 'lodash';
 import FloatField from '../../components/FloatField';
-import { Clear } from '@mui/icons-material';
-import LineItemSection from './LineItem';
 import PersonSection from './PersonSection';
+import FareShareTable from './FareShareTable';
+import { IndividualContribution, INITIAL_BILL, newIndividualContributor } from './fareShareUtils';
 
 type FareShareProps = {};
 
-const updateIndividual = (
-  itemizedBill: IndividualContribution[],
-  individualId: string,
-  updateFn: (individualContribution: IndividualContribution) => IndividualContribution,
-) => {
-  return itemizedBill.map((individual) =>
-    individual.id === individualId ? updateFn(individual) : individual,
-  );
-};
-
 const FareShare: React.FC<FareShareProps> = () => {
-  const [itemizedBill, setItemizedBill] = useState<IndividualContribution[]>([
-    newIndividualContributor(),
-  ]);
+  const [itemizedBill, setItemizedBill] = useState<IndividualContribution[]>(INITIAL_BILL);
 
-  const partialUpdate = ({
-    individualId,
-    itemId,
-    itemCost,
-    itemName,
-    deleteItem,
-  }: {
-    individualId: string;
-    itemId: string;
-    itemCost?: number;
-    itemName?: string;
-    deleteItem?: boolean;
-  }) => {
-    setItemizedBill(
-      updateIndividual(itemizedBill, individualId, (old) => ({
-        ...old,
-        itemizedContributions: deleteItem
-          ? old.itemizedContributions.filter((lineItem) => lineItem.id !== itemId)
-          : old.itemizedContributions.map((lineItem) => {
-            // Do not modify irrelevant line items
-            if (lineItem.id !== itemId) return lineItem;
-            return {
-              ...lineItem,
-              cost: itemCost ?? lineItem.cost,
-              itemName: itemName ?? lineItem.itemName,
-            };
-          }),
-      })),
-    );
-  };
-  const subtotal = _.sumBy(
-    itemizedBill.flatMap((indiv) => indiv.itemizedContributions),
-    (lineItem) => lineItem.cost,
-  );
   const [total, setTotal] = useState(0);
 
   const onChange = (id: string, newValue: IndividualContribution) => {
@@ -65,10 +19,13 @@ const FareShare: React.FC<FareShareProps> = () => {
   return (
     <Box component={'main'} width="100%" alignItems='center' justifyContent='center' display='flex'>
       <Card>
-        <CardContent>
+        <CardContent sx={{ maxWidth: 600 }}>
           <Typography variant='h1'>Fare Share</Typography>
+          <Typography pb={1}>
+            Split the bill based on how much each person bought. Those
+            who bought less get to pay (proportionally) less! (e.g. If you are responsible for 50% of the cost, then you pay 50% of the final total)</Typography>
           <Divider />
-          <Grid2 maxWidth={600} container spacing={1} width='100%'>
+          <Grid2 container spacing={1} width='100%' pt={1}>
             {itemizedBill.map((individual) => (
               <PersonSection
                 key={individual.id}
@@ -77,15 +34,16 @@ const FareShare: React.FC<FareShareProps> = () => {
                 onDelete={() => setItemizedBill(old => old.filter(e => e.id !== individual.id))}
               />
             ))}
-            <Button
-              fullWidth
-              variant="contained"
-              onClick={() => setItemizedBill([...itemizedBill, { ...newIndividualContributor() }])}
-            >
-              Add a Person
-            </Button>
-            <Grid2 size={10}>
-              <Typography>Subtotal: ${subtotal.toFixed(2)}</Typography>
+            <Grid2 size={8} display='flex' alignItems='center'>
+              <Button
+                fullWidth
+                variant="contained"
+                onClick={() => setItemizedBill([...itemizedBill, { ...newIndividualContributor(itemizedBill.length + 1) }])}
+              >
+                Add a Person
+              </Button>
+            </Grid2>
+            <Grid2 size={4}>
               <FloatField
                 value={total}
                 onChange={setTotal}
@@ -96,44 +54,11 @@ const FareShare: React.FC<FareShareProps> = () => {
               />
             </Grid2>
           </Grid2>
+          <Typography variant='h3' pt={2}>The Final Split</Typography>
+          <FareShareTable itemizedBill={itemizedBill} total={total} />
         </CardContent>
       </Card>
     </Box>
   );
 };
 export default FareShare;
-
-
-
-
-
-
-
-const newIndividualContributor = (): IndividualContribution => {
-  return {
-    id: crypto.randomUUID(),
-    name: '',
-    itemizedContributions: [newLineItem(1)],
-  };
-};
-
-export const newLineItem = (n?: number): LineItem => {
-  return {
-    id: crypto.randomUUID(),
-    itemName: `Item #${n}`,
-    cost: 0,
-  };
-};
-export type IndividualContribution = {
-  name: string;
-  /** An aribtrary unique ID for this indivudual */
-  id: string;
-  itemizedContributions: LineItem[];
-};
-
-export type LineItem = {
-  /** An arbitrary unique ID for this individual */
-  id: string;
-  itemName: string;
-  cost: number;
-};
