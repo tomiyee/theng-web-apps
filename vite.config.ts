@@ -14,8 +14,8 @@ export default defineConfig({
         start_url: '/theng-web-apps',
         scope: '/theng-web-apps',
         display: 'standalone',
-        background_color: '#ffffff',
-        theme_color: '#000000',
+        background_color: '#EEEEEE',
+        theme_color: '#8D5B4C',
         icons: [
           {
             src: 'icon-192.png',
