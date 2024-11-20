@@ -55,18 +55,18 @@ export const themeOptions: ThemeOptions = {
       styleOverrides: {
         root: {
           padding: 16,
-          "&:last-child": {
-            paddingBottom: 16
+          '&:last-child': {
+            paddingBottom: 16,
           },
-        }
-      }
+        },
+      },
     },
     // Mui Skeletons have a transform that make them appear shorter
     MuiSkeleton: {
       styleOverrides: {
         root: {
-          transformOrigin: "unset",
-          transform: "unset",
+          transformOrigin: 'unset',
+          transform: 'unset',
         },
       },
     },

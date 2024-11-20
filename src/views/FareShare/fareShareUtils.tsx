@@ -1,4 +1,3 @@
-
 export type LineItem = {
   /** An arbitrary unique ID for this individual */
   id: string;

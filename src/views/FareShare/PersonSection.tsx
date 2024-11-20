@@ -1,17 +1,15 @@
-import React from "react";
-import { Button, Divider, Grid2, IconButton, TextField, Typography } from "@mui/material";
-import LineItemSection from "./LineItem";
-import _ from "lodash";
-import { Clear } from "@mui/icons-material";
-import { IndividualContribution, LineItem, newLineItem } from "./fareShareUtils";
-
-
+import React from 'react';
+import { Button, Divider, Grid2, IconButton, TextField, Typography } from '@mui/material';
+import LineItemSection from './LineItem';
+import _ from 'lodash';
+import { Clear } from '@mui/icons-material';
+import { IndividualContribution, LineItem, newLineItem } from './fareShareUtils';
 
 type PersonSectionProps = {
   value: IndividualContribution;
   onChange: (value: IndividualContribution) => void;
   onDelete: () => void;
-}
+};
 
 const PersonSection: React.FC<PersonSectionProps> = (props) => {
   const { value, onChange, onDelete } = props;
@@ -19,42 +17,45 @@ const PersonSection: React.FC<PersonSectionProps> = (props) => {
   const updateLineItem = (id: string, newValue: LineItem) => {
     onChange({
       ...value,
-      itemizedContributions: value.itemizedContributions.map(lineItem => lineItem.id === id ? newValue : lineItem)
-    })
-  }
+      itemizedContributions: value.itemizedContributions.map((lineItem) =>
+        lineItem.id === id ? newValue : lineItem,
+      ),
+    });
+  };
 
   const deleteLineItem = (id: string) => {
     onChange({
       ...value,
-      itemizedContributions: value.itemizedContributions.filter(lineItem => lineItem.id !== id)
-    })
-  }
+      itemizedContributions: value.itemizedContributions.filter((lineItem) => lineItem.id !== id),
+    });
+  };
 
-  const personalSubtotal = _.sumBy(value.itemizedContributions, (item) => item.cost)
+  const personalSubtotal = _.sumBy(value.itemizedContributions, (item) => item.cost);
 
   return (
     <>
-      <Grid2 size={8} display='flex'>
+      <Grid2 size={8} display="flex">
         <TextField
           fullWidth
           label="Name of Individual"
           value={value.name}
           slotProps={{
             input: {
-              startAdornment:
-                <IconButton onClick={onDelete} >
+              startAdornment: (
+                <IconButton onClick={onDelete}>
                   <Clear />
                 </IconButton>
-            }
+              ),
+            },
           }}
           onChange={(e) => onChange({ ...value, name: e.target.value })}
         />
-      </Grid2 >
-      <Grid2 size={4} display='flex' alignItems='center' gap={1}>
-        <Typography fontWeight='bold'>Subtotal:</Typography>
+      </Grid2>
+      <Grid2 size={4} display="flex" alignItems="center" gap={1}>
+        <Typography fontWeight="bold">Subtotal:</Typography>
         <Typography>${personalSubtotal.toFixed(2)}</Typography>
       </Grid2>
-      {value.itemizedContributions.map(lineItem => (
+      {value.itemizedContributions.map((lineItem) => (
         <LineItemSection
           key={`${value.id}-${lineItem.id}`}
           indent={1}
@@ -71,7 +72,10 @@ const PersonSection: React.FC<PersonSectionProps> = (props) => {
           onClick={() =>
             onChange({
               ...value,
-              itemizedContributions: [...value.itemizedContributions, newLineItem(value.itemizedContributions.length + 1)]
+              itemizedContributions: [
+                ...value.itemizedContributions,
+                newLineItem(value.itemizedContributions.length + 1),
+              ],
             })
           }
         >
@@ -82,6 +86,6 @@ const PersonSection: React.FC<PersonSectionProps> = (props) => {
         <Divider />
       </Grid2>
     </>
-  )
-}
+  );
+};
 export default PersonSection;

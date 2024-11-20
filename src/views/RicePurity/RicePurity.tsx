@@ -8,7 +8,10 @@ const RicePurity: React.FC = () => {
   const toggle = useRicePurityStore((state) => state.toggle);
   return (
     <Stack spacing={3} alignItems="center">
-      <img src="https://ricepurity.github.io/thresherOfficial.png" style={{ width: '100%', maxWidth: 500 }} />
+      <img
+        src="https://ricepurity.github.io/thresherOfficial.png"
+        style={{ width: '100%', maxWidth: 500 }}
+      />
       <Stack maxWidth={700} spacing={1}>
         <Typography sx={{ fontStyle: 'italic' }}>
           The Purity Test has historically served as a segue from O-week to true college life at

@@ -9,10 +9,20 @@ const Landing: React.FC = () => {
   return (
     <Box component={'main'} width="100%">
       <Box display="flex" flexWrap={'wrap'} gap={2}>
-        <DynamicGrid elementWidth={360} >
+        <DynamicGrid elementWidth={360}>
           {/* <AppComponent title="Num Pad Trainer" Icon={Dialpad} path="num-pad-trainer" /> */}
-          <AppComponent title="Fare Share" Icon={PriceCheckIcon} path="fare-share" description="Split the bill based on how much each person bought! Those who bought more, owe more." />
-          <AppComponent title="Rice Purity Test" Icon={Checklist} path="rice-purity-test" description="The rice purity test except it remembers your selection, all stored locally in your browser." />
+          <AppComponent
+            title="Fare Share"
+            Icon={PriceCheckIcon}
+            path="fare-share"
+            description="Split the bill based on how much each person bought! Those who bought more, owe more."
+          />
+          <AppComponent
+            title="Rice Purity Test"
+            Icon={Checklist}
+            path="rice-purity-test"
+            description="The rice purity test except it remembers your selection, all stored locally in your browser."
+          />
           <Box />
           <Box />
           <Box />
@@ -36,12 +46,12 @@ const AppComponent: React.FC<AppComponentProps> = ({ title, Icon, path, descript
   return (
     <Card sx={{ cursor: 'pointer' }} onClick={() => navigate(path)}>
       <CardContent>
-        <Box width='100%' display='flex' gap={1}>
-          <Box width={64} height={64} alignItems="center" justifyContent='center'>
+        <Box width="100%" display="flex" gap={1}>
+          <Box width={64} height={64} alignItems="center" justifyContent="center">
             <Icon style={{ fontSize: '64px' }} />
           </Box>
           <Stack flex={1}>
-            <Typography fontWeight='bold'>{title}</Typography>
+            <Typography fontWeight="bold">{title}</Typography>
             <Typography>{description}</Typography>
           </Stack>
         </Box>
