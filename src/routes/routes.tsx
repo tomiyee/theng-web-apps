@@ -8,6 +8,7 @@ const LandingPage = lazy(() => import('../views/Landing/Landing'));
 const FareSharePage = lazy(() => import('../views/FareShare/FareShare'));
 const NumPadTrainerPage = lazy(() => import('../views/NumPadTrainer/NumPadTrainer'));
 const RicePurityPage = lazy(() => import('../views/RicePurity/RicePurity'));
+const FoxGamePage = lazy(() => import('../views/FoxGame/FoxGame'));
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: 'rice-purity-test',
         element: <RicePurityPage />,
+      },
+      {
+        path: 'fox-game',
+        element: <FoxGamePage />,
       },
     ],
   },
