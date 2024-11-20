@@ -2,7 +2,7 @@ import { Box, Card, CardContent, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
-import { Checklist } from '@mui/icons-material';
+import { Checklist, ContentPasteSearch } from '@mui/icons-material';
 import DynamicGrid from '../../components/DynamicGrid';
 
 const Landing: React.FC = () => {
@@ -16,6 +16,12 @@ const Landing: React.FC = () => {
             Icon={PriceCheckIcon}
             path="fare-share"
             description="Split the bill based on how much each person bought! Those who bought more, owe more."
+          />
+          <AppComponent
+            title="Don't Find the FOX"
+            Icon={ContentPasteSearch}
+            path="fox-game"
+            description="Test your luck in not finding the FOX in a variety of board sizes."
           />
           <AppComponent
             title="Rice Purity Test"

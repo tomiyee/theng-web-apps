@@ -93,10 +93,9 @@ const FoxGame: React.FC = () => {
           >
             Add Letter
           </Button>
-          {hasFox ||
-            (boardState.length === boardSize * boardSize && (
-              <Button onClick={() => setBoardState([])}>Reset</Button>
-            ))}
+          {(hasFox || boardState.length === boardSize * boardSize) && (
+            <Button onClick={() => setBoardState([])}>Reset</Button>
+          )}
         </Stack>
       </CardContent>
     </Card>
@@ -106,12 +105,12 @@ export default FoxGame;
 
 type FoxStatus =
   | {
-    hasFox: true;
-    foxSquares: { rowIndex: number; columnIndex: number }[];
-  }
+      hasFox: true;
+      foxSquares: { rowIndex: number; columnIndex: number }[];
+    }
   | {
-    hasFox: false;
-  };
+      hasFox: false;
+    };
 
 const checkBoardState = (boardState: FoxLetter[], boardSize: number): FoxStatus => {
   let foxStatus: FoxStatus = { hasFox: false };
