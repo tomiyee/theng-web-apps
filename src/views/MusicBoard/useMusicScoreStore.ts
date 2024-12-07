@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 enum MusicInstrument {
   FLUTE,
@@ -15,47 +15,47 @@ type MusicNote = {
   beatStart: number;
   /** An integer */
   duration: number;
-}
+};
 
 type MusicScoreState = {
-  notes: MusicNote[]
-}
+  notes: MusicNote[];
+};
 
 const useMusicScoreStore = create(
   persist<MusicScoreState>(
     () => ({
       notes: [
         {
-          id: "0",
+          id: '0',
           pitch: 0,
           instrument: MusicInstrument.FLUTE,
           beatStart: 0,
           duration: 4,
         },
         {
-          id: "1",
+          id: '1',
           pitch: 1,
           instrument: MusicInstrument.FLUTE,
           beatStart: 2,
           duration: 4,
         },
         {
-          id: "2",
+          id: '2',
           pitch: 2,
           instrument: MusicInstrument.FLUTE,
           beatStart: 4,
           duration: 4,
         },
         {
-          id: "3",
+          id: '3',
           pitch: 3,
           instrument: MusicInstrument.FLUTE,
           beatStart: 6,
           duration: 4,
-        }
-      ]
+        },
+      ],
     }),
-    { name: "music-score" }
-  )
-)
+    { name: 'music-score' },
+  ),
+);
 export default useMusicScoreStore;

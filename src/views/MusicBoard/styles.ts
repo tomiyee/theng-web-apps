@@ -1,5 +1,5 @@
-import { css } from "@mui/material";
-import { COL_WIDTH, COLUMNS, DROP_HEIGHT, ROW_HEIGHT, ROWS } from "./constants";
+import { css } from '@mui/material';
+import { COL_WIDTH, COLUMNS, DROP_HEIGHT, ROW_HEIGHT, ROWS } from './constants';
 
 export const styles = {
   board: css`
@@ -39,4 +39,4 @@ export const styles = {
     display: grid;
     grid-template-columns: 100px;
   `,
-}
+};
