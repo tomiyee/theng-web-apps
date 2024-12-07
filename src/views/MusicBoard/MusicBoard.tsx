@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material';
+import { Box, Card, CardContent, Paper, Stack } from '@mui/material';
 import _ from 'lodash';
 import React from 'react';
 import { styles } from './styles';
@@ -7,14 +7,31 @@ import MusicBoardNotes from './MusicBoardNotes';
 
 const MusicBoard = () => {
   return (
-    <Stack
-      component={'main'}
-      width="100%"
-      alignItems="center"
-      justifyContent="center"
-      display="flex"
+    <Paper component='main' sx={{ pb: 2 }}
     >
-      <Box>Hello</Box>
+      <Box display='flex' width='100%' padding='12px' gap={'12px'}>
+        <Box flex={1} minWidth={100}>
+          <Card>
+            <CardContent>
+              Rhythms
+            </CardContent>
+          </Card>
+        </Box>
+        <Box flex={1} minWidth={100}>
+          <Card>
+            <CardContent>
+              Dynamics
+            </CardContent>
+          </Card>
+        </Box>
+        <Box flex={1} minWidth={100}>
+          <Card>
+            <CardContent>
+              Chord
+            </CardContent>
+          </Card>
+        </Box>
+      </Box>
       <Box display="flex" maxWidth="100%" gap="20px" paddingX="20px">
         <Box flex={0}>
           <DragDropLegend />
@@ -23,22 +40,19 @@ const MusicBoard = () => {
           <Stack gap={1} width="fit-content">
             <div css={styles.droppablesGrid}>
               {_.range(COLUMNS / 4).map((i) => (
-                <span key={i} css={styles.dropContainer} />
+                <span key={i} css={styles.dropContainer} style={{ backgroundColor: 'tan' }} />
               ))}
               {_.range(COLUMNS / 4).map((i) => (
-                <span key={i} css={styles.dropContainer} />
+                <span key={i} css={styles.dropContainer} style={{ backgroundColor: 'tan' }} />
               ))}
               {_.range(COLUMNS / 4).map((i) => (
-                <span key={i} css={styles.dropContainer} />
+                <span key={i} css={styles.dropContainer} style={{ backgroundColor: 'lightblue' }} />
               ))}
               {_.range(COLUMNS / 4).map((i) => (
-                <span key={i} css={styles.dropContainer} />
+                <span key={i} css={styles.dropContainer} style={{ backgroundColor: 'lightblue' }} />
               ))}
               {_.range(COLUMNS / 4).map((i) => (
-                <span key={i} css={styles.dropContainer} />
-              ))}
-              {_.range(COLUMNS / 4).map((i) => (
-                <span key={i} css={styles.dropContainer} />
+                <span key={i} css={styles.dropContainer} style={{ backgroundColor: 'violet' }} />
               ))}
             </div>
             <Box position="relative">
@@ -63,7 +77,7 @@ const MusicBoard = () => {
           <DragDropLegend />
         </Box>
       </Box>
-    </Stack>
+    </Paper>
   );
 };
 export default MusicBoard;
@@ -93,12 +107,11 @@ const GridBackground: React.FC<GridBackgroundProps> = (props) => {
 const DragDropLegend: React.FC = () => {
   return (
     <Box css={styles.droppableLegend}>
-      <span css={styles.dropContainer} />
-      <span css={styles.dropContainer} />
-      <span css={styles.dropContainer} />
-      <span css={styles.dropContainer} />
-      <span css={styles.dropContainer} />
-      <span css={styles.dropContainer}> CHORD </span>
+      <span css={styles.dropContainer} style={{ backgroundColor: 'tan' }}> PIANO DYNAMICS</span>
+      <span css={styles.dropContainer} style={{ backgroundColor: 'tan' }}> PIANO RHYTHM</span>
+      <span css={styles.dropContainer} style={{ backgroundColor: 'lightblue' }}> FLUTE DYNAMICS</span>
+      <span css={styles.dropContainer} style={{ backgroundColor: 'lightblue' }}> FLUTE RHYTHM</span>
+      <span css={styles.dropContainer} style={{ backgroundColor: 'violet' }}> CHORD </span>
     </Box>
   );
 };

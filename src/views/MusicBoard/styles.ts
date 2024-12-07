@@ -34,9 +34,12 @@ export const styles = {
     border-radius: 4px;
     background: #ddd;
     height: ${DROP_HEIGHT};
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `,
   droppableLegend: css`
     display: grid;
-    grid-template-columns: 100px;
+    grid-template-columns: 160px;
   `,
 };
