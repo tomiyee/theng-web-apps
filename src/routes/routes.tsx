@@ -9,6 +9,7 @@ const FareSharePage = lazy(() => import('../views/FareShare/FareShare'));
 const NumPadTrainerPage = lazy(() => import('../views/NumPadTrainer/NumPadTrainer'));
 const RicePurityPage = lazy(() => import('../views/RicePurity/RicePurity'));
 const FoxGamePage = lazy(() => import('../views/FoxGame/FoxGame'));
+const MusicBoardPage = lazy(() => import('../views/MusicBoard/MusicBoard'));
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: 'fox-game',
         element: <FoxGamePage />,
+      },
+      {
+        path: 'music-board',
+        element: <MusicBoardPage />,
       },
     ],
   },
