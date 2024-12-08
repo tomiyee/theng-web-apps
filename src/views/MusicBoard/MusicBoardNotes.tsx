@@ -1,7 +1,7 @@
 import React from 'react';
 import { styles } from './styles';
 import useMusicScoreStore from './useMusicScoreStore';
-import { ROWS } from './constants';
+import { ROWS } from './musicBoardConstants';
 import { useTheme } from '@mui/material';
 
 const MusicBoardNotes: React.FC = () => {

@@ -1,14 +1,20 @@
-import { Box, Card, CardContent, Paper, Stack } from '@mui/material';
+import { Box, Button, Card, CardContent, Paper, Stack } from '@mui/material';
 import _ from 'lodash';
 import React from 'react';
 import { styles } from './styles';
-import { COLUMNS, ROWS } from './constants';
+import { COLUMNS, ROWS } from './musicBoardConstants';
 import MusicBoardNotes from './MusicBoardNotes';
+import useMusicScoreStore from './useMusicScoreStore';
 
 const MusicBoard = () => {
+  const initializeTone = useMusicScoreStore((state) => state.actions.initializeTone);
+  const playNote = useMusicScoreStore((state) => state.actions.playNote);
+  const onClick = () => {
+    initializeTone();
+    playNote();
+  }
   return (
-    <Paper component='main' sx={{ pb: 2 }}
-    >
+    <Paper component='main' sx={{ pb: 2 }}>
       <Box display='flex' width='100%' padding='12px' gap={'12px'}>
         <Box flex={1} minWidth={100}>
           <Card>
@@ -32,6 +38,7 @@ const MusicBoard = () => {
           </Card>
         </Box>
       </Box>
+      <Button onClick={onClick}>Play Note</Button>
       <Box display="flex" maxWidth="100%" gap="20px" paddingX="20px">
         <Box flex={0}>
           <DragDropLegend />

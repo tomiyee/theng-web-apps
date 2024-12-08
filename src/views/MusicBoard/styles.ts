@@ -1,5 +1,5 @@
 import { css } from '@mui/material';
-import { COL_WIDTH, COLUMNS, DROP_HEIGHT, ROW_HEIGHT, ROWS } from './constants';
+import { COL_WIDTH, COLUMNS, DROP_HEIGHT, ROW_HEIGHT, ROWS } from './musicBoardConstants';
 
 export const styles = {
   board: css`
