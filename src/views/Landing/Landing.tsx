@@ -7,14 +7,22 @@ import DynamicGrid from '../../components/DynamicGrid';
 import { getOptionsFromEnum } from '../../utilities';
 import DropdownSelect from '../../components/Select';
 
-enum Fruit { APPLES, ORANGES }
+enum Fruit {
+  APPLES,
+  ORANGES,
+}
 
 const Landing: React.FC = () => {
-  const [f, setF] = useState(Fruit.APPLES)
+  const [f, setF] = useState(Fruit.APPLES);
   return (
     <Box component={'main'} width="100%">
       <Box display="flex" flexWrap={'wrap'} gap={2}>
-        <DropdownSelect value={f} options={getOptionsFromEnum(Fruit)} onChange={setF} label="Fruits" />
+        <DropdownSelect
+          value={f}
+          options={getOptionsFromEnum(Fruit)}
+          onChange={setF}
+          label="Fruits"
+        />
         <DynamicGrid elementWidth={360}>
           {/* <AppComponent title="Num Pad Trainer" Icon={Dialpad} path="num-pad-trainer" /> */}
           <AppComponent

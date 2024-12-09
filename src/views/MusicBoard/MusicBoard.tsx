@@ -12,29 +12,23 @@ const MusicBoard = () => {
   const onClick = () => {
     initializeTone();
     playNote();
-  }
+  };
   return (
-    <Paper component='main' sx={{ pb: 2 }}>
-      <Box display='flex' width='100%' padding='12px' gap={'12px'}>
+    <Paper component="main" sx={{ pb: 2 }}>
+      <Box display="flex" width="100%" padding="12px" gap={'12px'}>
         <Box flex={1} minWidth={100}>
           <Card>
-            <CardContent>
-              Rhythms
-            </CardContent>
+            <CardContent>Rhythms</CardContent>
           </Card>
         </Box>
         <Box flex={1} minWidth={100}>
           <Card>
-            <CardContent>
-              Dynamics
-            </CardContent>
+            <CardContent>Dynamics</CardContent>
           </Card>
         </Box>
         <Box flex={1} minWidth={100}>
           <Card>
-            <CardContent>
-              Chord
-            </CardContent>
+            <CardContent>Chord</CardContent>
           </Card>
         </Box>
       </Box>
@@ -114,11 +108,26 @@ const GridBackground: React.FC<GridBackgroundProps> = (props) => {
 const DragDropLegend: React.FC = () => {
   return (
     <Box css={styles.droppableLegend}>
-      <span css={styles.dropContainer} style={{ backgroundColor: 'tan' }}> PIANO DYNAMICS</span>
-      <span css={styles.dropContainer} style={{ backgroundColor: 'tan' }}> PIANO RHYTHM</span>
-      <span css={styles.dropContainer} style={{ backgroundColor: 'lightblue' }}> FLUTE DYNAMICS</span>
-      <span css={styles.dropContainer} style={{ backgroundColor: 'lightblue' }}> FLUTE RHYTHM</span>
-      <span css={styles.dropContainer} style={{ backgroundColor: 'violet' }}> CHORD </span>
+      <span css={styles.dropContainer} style={{ backgroundColor: 'tan' }}>
+        {' '}
+        PIANO DYNAMICS
+      </span>
+      <span css={styles.dropContainer} style={{ backgroundColor: 'tan' }}>
+        {' '}
+        PIANO RHYTHM
+      </span>
+      <span css={styles.dropContainer} style={{ backgroundColor: 'lightblue' }}>
+        {' '}
+        FLUTE DYNAMICS
+      </span>
+      <span css={styles.dropContainer} style={{ backgroundColor: 'lightblue' }}>
+        {' '}
+        FLUTE RHYTHM
+      </span>
+      <span css={styles.dropContainer} style={{ backgroundColor: 'violet' }}>
+        {' '}
+        CHORD{' '}
+      </span>
     </Box>
   );
 };

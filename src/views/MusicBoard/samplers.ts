@@ -1,6 +1,6 @@
-import * as Tone from "tone";
-import FluteDb5 from "./samples/FluteDb5.wav";
-import { MusicInstrument } from "./musicBoardConstants";
+import * as Tone from 'tone';
+import FluteDb5 from './samples/FluteDb5.wav';
+import { MusicInstrument } from './musicBoardConstants';
 
 export const fluteSampler = new Tone.Sampler({
   urls: { Db5: FluteDb5 },
