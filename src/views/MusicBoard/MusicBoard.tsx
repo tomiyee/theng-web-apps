@@ -1,18 +1,19 @@
 import { Box, Button, Card, CardContent, Paper, Stack } from '@mui/material';
 import _ from 'lodash';
-import React from 'react';
+import React, { useRef } from 'react';
 import { styles } from './styles';
 import { COLUMNS, ROWS } from './musicBoardConstants';
 import MusicBoardNotes from './MusicBoardNotes';
 import useMusicScoreStore from './useMusicScoreStore';
+import PlayHead from './PlayHead';
 
 const MusicBoard = () => {
-  const initializeTone = useMusicScoreStore((state) => state.actions.initializeTone);
   const playNote = useMusicScoreStore((state) => state.actions.playNote);
   const onClick = () => {
     initializeTone();
     playNote();
   };
+  const scrollableRef = useRef<HTMLDivElement>(null);
   return (
     <Paper component="main" sx={{ pb: 2 }}>
       <Box display="flex" width="100%" padding="12px" gap={'12px'}>
@@ -37,7 +38,7 @@ const MusicBoard = () => {
         <Box flex={0}>
           <DragDropLegend />
         </Box>
-        <Box flex={1} overflow="auto">
+        <Box flex={1} overflow="auto" ref={scrollableRef}>
           <Stack gap={1} width="fit-content">
             <div css={styles.droppablesGrid}>
               {_.range(COLUMNS / 4).map((i) => (
@@ -71,6 +72,7 @@ const MusicBoard = () => {
               <div css={styles.float}>
                 <MusicBoardNotes />
               </div>
+              <PlayHead containerRef={scrollableRef} />
             </Box>
           </Stack>
         </Box>
@@ -131,3 +133,6 @@ const DragDropLegend: React.FC = () => {
     </Box>
   );
 };
+function initializeTone() {
+  throw new Error('Function not implemented.');
+}

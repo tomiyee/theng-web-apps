@@ -11,6 +11,7 @@ const MusicBoardNotes: React.FC = () => {
     <div css={styles.board}>
       {notes.map((note) => (
         <span
+          key={note.id}
           style={{
             gridColumnStart: note.beatStart + 1,
             gridColumnEnd: note.beatStart + note.duration + 1,
