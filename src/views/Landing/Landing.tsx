@@ -1,14 +1,20 @@
 import { Box, Card, CardContent, Stack, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import { Checklist, ContentPasteSearch } from '@mui/icons-material';
 import DynamicGrid from '../../components/DynamicGrid';
+import { getOptionsFromEnum } from '../../utilities';
+import DropdownSelect from '../../components/DropdownSelect';
+
+enum Fruit { APPLES, ORANGES }
 
 const Landing: React.FC = () => {
+  const [f, setF] = useState(Fruit.APPLES)
   return (
     <Box component={'main'} width="100%">
       <Box display="flex" flexWrap={'wrap'} gap={2}>
+        <DropdownSelect value={f} options={getOptionsFromEnum(Fruit)} onChange={setF} label="Fruits" />
         <DynamicGrid elementWidth={360}>
           {/* <AppComponent title="Num Pad Trainer" Icon={Dialpad} path="num-pad-trainer" /> */}
           <AppComponent
