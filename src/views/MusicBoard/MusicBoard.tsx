@@ -1,6 +1,6 @@
 import { Box, Button, Card, CardContent, Paper, Stack } from '@mui/material';
 import _ from 'lodash';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { styles } from './styles';
 import { COLUMNS, ROWS } from './musicBoardConstants';
 import MusicBoardNotes from './MusicBoardNotes';
@@ -14,6 +14,9 @@ const MusicBoard = () => {
     playNote();
   };
   const scrollableRef = useRef<HTMLDivElement>(null);
+
+  const [playing, setPlaying] = useState(false);
+
   return (
     <Paper component="main" sx={{ pb: 2 }}>
       <Box display="flex" width="100%" padding="12px" gap={'12px'}>
@@ -34,6 +37,7 @@ const MusicBoard = () => {
         </Box>
       </Box>
       <Button onClick={onClick}>Play Note</Button>
+      <Button onClick={() => setPlaying(!playing)}>{playing ? 'Stop' : 'Play'}</Button>
       <Box display="flex" maxWidth="100%" gap="20px" paddingX="20px">
         <Box flex={0}>
           <DragDropLegend />
@@ -72,7 +76,7 @@ const MusicBoard = () => {
               <div css={styles.float}>
                 <MusicBoardNotes />
               </div>
-              <PlayHead containerRef={scrollableRef} />
+              {playing && <PlayHead playing={playing} containerRef={scrollableRef} />}
             </Box>
           </Stack>
         </Box>

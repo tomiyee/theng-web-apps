@@ -26,16 +26,18 @@ const style = {
 
 type PlayHeadProps = {
   containerRef: React.MutableRefObject<HTMLElement | null>;
+  playing: boolean;
 };
 
 const PlayHead: React.FC<PlayHeadProps> = (props) => {
-  const { containerRef } = props;
+  const { containerRef, playing } = props;
 
   const playHeadRef = useRef<Element>(null);
 
   useEffect(() => {
     if (containerRef.current === null) return;
     if (playHeadRef.current === null) return;
+    if (!playing) return;
     const observer = new IntersectionObserver(
       (entries) => {
         if (containerRef.current === null) return;
@@ -50,8 +52,12 @@ const PlayHead: React.FC<PlayHeadProps> = (props) => {
       { root: containerRef.current, threshold: 0.5 },
     );
     observer.observe(playHeadRef.current);
-  }, []);
+    return () => {
+      if (playHeadRef.current !== null) observer.unobserve(playHeadRef.current);
+      observer.disconnect();
+    };
+  }, [playing]);
 
-  return <Box css={[style.playHead, style.animated]} ref={playHeadRef} />;
+  return <Box css={[style.playHead, playing && style.animated]} ref={playHeadRef} />;
 };
 export default PlayHead;
