@@ -5,7 +5,7 @@ import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import { Checklist, ContentPasteSearch } from '@mui/icons-material';
 import DynamicGrid from '../../components/DynamicGrid';
 import { getOptionsFromEnum } from '../../utilities';
-import DropdownSelect from '../../components/DropdownSelect';
+import DropdownSelect from '../../components/Select';
 
 enum Fruit { APPLES, ORANGES }
 

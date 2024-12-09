@@ -1,4 +1,4 @@
-import { DropdownOption } from './components/DropdownSelect';
+import { DropdownOption } from './components/Select';
 
 export const getOptionsFromEnum = <T extends object>(enumObj: T): DropdownOption<T[keyof T]>[] => {
   const enumKeys = getEnumKeys(enumObj);
