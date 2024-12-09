@@ -23,7 +23,7 @@ type DropdownSelectProps<T> = {
   options: DropdownOption<T>[];
   value: T;
   onChange: (newValue: T) => void;
-  selectProps?: Omit<SelectProps<T>, "value" | "onChange" | "labelId" | "id">;
+  selectProps?: Omit<SelectProps<T>, 'value' | 'onChange' | 'labelId' | 'id'>;
 };
 
 /** @description A wrapper over the Mui Select component that takes menu items as an object */
