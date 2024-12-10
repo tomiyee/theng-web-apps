@@ -4,18 +4,23 @@ import React, { useRef, useState } from 'react';
 import { styles } from './styles';
 import { COLUMNS, ROWS } from './musicBoardConstants';
 import MusicBoardNotes from './MusicBoardNotes';
-import useMusicScoreStore from './useMusicScoreStore';
+import useMusicScoreStore, { initializeTone } from './useMusicScoreStore';
 import PlayHead from './PlayHead';
 
 const MusicBoard = () => {
-  const playNote = useMusicScoreStore((state) => state.actions.playNote);
+  const [playing, setPlaying] = useState(false);
   const onClick = () => {
-    initializeTone();
-    playNote();
+    if (playing) {
+      setPlaying(false);
+      useMusicScoreStore.getState().actions.stopArrangement();
+    } else {
+      initializeTone();
+      setPlaying(true);
+      useMusicScoreStore.getState().actions.setTempo(120);
+      useMusicScoreStore.getState().actions.playArrangement();
+    }
   };
   const scrollableRef = useRef<HTMLDivElement>(null);
-
-  const [playing, setPlaying] = useState(false);
 
   return (
     <Paper component="main" sx={{ pb: 2 }}>
@@ -37,7 +42,7 @@ const MusicBoard = () => {
         </Box>
       </Box>
       <Button onClick={onClick}>Play Note</Button>
-      <Button onClick={() => setPlaying(!playing)}>{playing ? 'Stop' : 'Play'}</Button>
+      <Button onClick={onClick}>{playing ? 'Stop' : 'Play'}</Button>
       <Box display="flex" maxWidth="100%" gap="20px" paddingX="20px">
         <Box flex={0}>
           <DragDropLegend />
@@ -137,6 +142,3 @@ const DragDropLegend: React.FC = () => {
     </Box>
   );
 };
-function initializeTone() {
-  throw new Error('Function not implemented.');
-}

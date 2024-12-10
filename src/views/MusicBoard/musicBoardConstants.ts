@@ -1,6 +1,7 @@
 export const OCTAVES = 3;
 
 export const MEASURES_PER_COLUMN = 1 / 8;
+export const BEATS_PER_MEASURE = 4;
 export const COLUMNS = 64;
 export const ROWS = 1 + 7 * OCTAVES;
 export const COL_WIDTH = '24px';

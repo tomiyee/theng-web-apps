@@ -13,7 +13,7 @@ const effect = keyframes`
 
 const style = {
   playHead: css`
-    width: ${COL_WIDTH};
+    width: 4px;
     height: calc(${ROW_HEIGHT} * ${ROWS});
     background: rgba(200, 200, 255, 0.5);
     position: absolute;
