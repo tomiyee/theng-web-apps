@@ -49,6 +49,7 @@ const PersonSection: React.FC<PersonSectionProps> = (props) => {
             },
           }}
           onChange={(e) => onChange({ ...value, name: e.target.value })}
+          onFocus={(e) => e.target.setSelectionRange(0, e.target.value.length)}
         />
       </Grid2>
       <Grid2 size={4} display="flex" alignItems="center" gap={1}>

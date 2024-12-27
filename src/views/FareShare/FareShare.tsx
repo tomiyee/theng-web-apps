@@ -59,6 +59,7 @@ const FareShare: React.FC<FareShareProps> = () => {
                 textFieldProps={{
                   label: 'Total',
                   size: 'small',
+                  onFocus: (e) => e.target.setSelectionRange(0, e.target.value.length)
                 }}
               />
             </Grid2>

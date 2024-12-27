@@ -22,6 +22,7 @@ const LineItemSection: React.FC<LineItemProps> = (props) => {
           fullWidth
           value={lineItem.itemName}
           onChange={(e) => onChange({ ...lineItem, itemName: e.target.value })}
+          onFocus={(e) => e.target.setSelectionRange(0, e.target.value.length)}
           slotProps={{
             input: {
               startAdornment: (
@@ -35,7 +36,7 @@ const LineItemSection: React.FC<LineItemProps> = (props) => {
       </Grid2>
       <Grid2 size={4}>
         <FloatField
-          textFieldProps={{ fullWidth: true }}
+          textFieldProps={{ fullWidth: true, onFocus: (e) => e.target.setSelectionRange(0, e.target.value.length) }}
           value={lineItem.cost}
           onChange={(cost) => onChange({ ...lineItem, cost })}
         />
