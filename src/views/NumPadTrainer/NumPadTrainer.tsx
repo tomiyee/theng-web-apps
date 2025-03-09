@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { Box, Card, CardContent, css, Typography } from '@mui/material';
+import { Box, Card, CardContent, css } from '@mui/material';
 import { random } from 'lodash';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 const SMALL_WIDTH = 20;
@@ -9,6 +9,7 @@ const BIG_WIDTH = 40;
 const LOOK_AHEAD = 3;
 const LOOK_BACK = 3;
 const ANIMATION_DURATION = 0.1;
+const NUMBER_KEYS = '0123456789'.split('');
 
 const styles = {
   viewport: css`
@@ -17,7 +18,6 @@ const styles = {
     height: ${BIG_WIDTH}px;
     display: flex;
     overflow: hidden;
-    
   `,
   numberCarousel: css`
     display: flex;
@@ -43,28 +43,28 @@ const styles = {
   `,
 };
 
-type NumPadTrainerProps = {};
-
-const NUMBER_KEYS = "0123456789".split("");
-
-const NumPadTrainer: React.FC<NumPadTrainerProps> = () => {
+const NumPadTrainer: React.FC = () => {
   const [shownIndex, setShownIndex] = useState(0);
   const [pressedKeys, setPressedKeys] = useState<string[]>([]);
-  const [numbers, setNumbers] = useState<number[]>(() => (new Array((LOOK_BACK + 1 + LOOK_AHEAD)).fill(0).map(() => random(0, 9))));
+  const [numbers, setNumbers] = useState(() =>
+    new Array(1 + LOOK_AHEAD).fill(0).map(() => random(0, 9)),
+  );
   useHotkeys(NUMBER_KEYS, (e) => {
-    if (pressedKeys.includes(e.key))
-      return;
+    // To prevent spamming the handler when pressed, we keep track of curently held buttons
+    if (pressedKeys.includes(e.key)) return;
     setPressedKeys((old) => [...old, e.key]);
+    // if it matches the currently enlarged image, add another number and shift everything
     if (parseInt(e.key) === numbers[shownIndex]) {
       setShownIndex(shownIndex + 1);
-      setNumbers((old) => [...old, random(0, 9)])
+      setNumbers((old) => [...old, random(0, 9)]);
     }
-  })
-  useHotkeys(NUMBER_KEYS, (e) => {
-    setPressedKeys((old) => old.filter((key) => key !== e.key));
-  }, { keyup: true, keydown: false })
+  });
+  useHotkeys(NUMBER_KEYS, (e) => setPressedKeys((old) => old.filter((key) => key !== e.key)), {
+    keyup: true,
+    keydown: false,
+  });
   return (
-    <Box display="flex" width="100%" height="100%" alignItems='center' justifyContent="center">
+    <Box display="flex" width="100%" height="100%" alignItems="center" justifyContent="center">
       <Card>
         <CardContent>
           <NumberDisplay numbers={numbers} shownIndex={shownIndex} />
@@ -86,7 +86,10 @@ const NumberDisplay: React.FC<NumberDisplayProps> = (props) => {
     <Box css={styles.viewport}>
       <Box css={styles.numberCarousel} style={{ left: -(shownIndex - LOOK_BACK) * SMALL_WIDTH }}>
         {numbers.map((num, i) => (
-          <span key={i} css={[styles.number, i === shownIndex ? styles.bigNumber : styles.smallNumber]}>
+          <span
+            key={i}
+            css={[styles.number, i === shownIndex ? styles.bigNumber : styles.smallNumber]}
+          >
             {num}
           </span>
         ))}
