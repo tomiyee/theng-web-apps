@@ -36,7 +36,10 @@ const LineItemSection: React.FC<LineItemProps> = (props) => {
       </Grid2>
       <Grid2 size={4}>
         <FloatField
-          textFieldProps={{ fullWidth: true, onFocus: (e) => e.target.setSelectionRange(0, e.target.value.length) }}
+          textFieldProps={{
+            fullWidth: true,
+            onFocus: (e) => e.target.setSelectionRange(0, e.target.value.length),
+          }}
           value={lineItem.cost}
           onChange={(cost) => onChange({ ...lineItem, cost })}
         />
