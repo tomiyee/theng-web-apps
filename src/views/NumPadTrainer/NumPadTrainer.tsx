@@ -4,8 +4,8 @@ import { random } from 'lodash';
 import React, { useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
-const SMALL_WIDTH = 20;
-const BIG_WIDTH = 40;
+const SMALL_WIDTH = 40;
+const BIG_WIDTH = 60;
 const LOOK_AHEAD = 3;
 const LOOK_BACK = 3;
 const ANIMATION_DURATION = 0.1;
@@ -29,7 +29,7 @@ const styles = {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: font-size ${ANIMATION_DURATION}s;
+    transition: font-size ${ANIMATION_DURATION}s, color ${ANIMATION_DURATION}s;
   `,
   bigNumber: css`
     width: ${BIG_WIDTH}px;
@@ -40,6 +40,7 @@ const styles = {
     width: ${SMALL_WIDTH}px;
     height: ${SMALL_WIDTH}px;
     font-size: ${SMALL_WIDTH}px;
+    color: gray;
   `,
 };
 

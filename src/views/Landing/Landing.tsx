@@ -2,7 +2,7 @@ import { Box, Card, CardContent, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
-import { Checklist, ContentPasteSearch } from '@mui/icons-material';
+import { Checklist, ContentPasteSearch, Dialpad } from '@mui/icons-material';
 import DynamicGrid from '../../components/DynamicGrid';
 
 const Landing: React.FC = () => {
@@ -28,6 +28,12 @@ const Landing: React.FC = () => {
             Icon={Checklist}
             path="rice-purity-test"
             description="The rice purity test except it remembers your selection, all stored locally in your browser."
+          />
+          <AppComponent
+            title="Num Pad Trainer"
+            Icon={Dialpad}
+            path="num-pad-trainer"
+            description="Build dexterity with using the numpad."
           />
           <Box />
           <Box />
