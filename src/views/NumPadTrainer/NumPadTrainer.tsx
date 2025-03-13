@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { Box, Button, Card, CardContent, css, Stack } from '@mui/material';
+import { Box, Button, Card, CardContent, css, Divider, Stack, Typography } from '@mui/material';
 import { random } from 'lodash';
 import React, { useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
@@ -8,7 +8,6 @@ const SMALL_WIDTH = 40;
 const BIG_WIDTH = 60;
 const LOOK_AHEAD = 3;
 const LOOK_BACK = 3;
-const ANIMATION_DURATION = 0.1;
 const NUMBER_KEYS = '0123456789'.split('');
 
 const styles = {
@@ -28,10 +27,6 @@ const styles = {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 
-    left ${ANIMATION_DURATION}s,
-      font-size ${ANIMATION_DURATION}s,
-      color ${ANIMATION_DURATION}s;
   `,
   bigNumber: css`
     width: ${BIG_WIDTH}px;
@@ -43,6 +38,10 @@ const styles = {
     height: ${SMALL_WIDTH}px;
     font-size: ${SMALL_WIDTH}px;
     color: gray;
+  `,
+  card: css`
+    width: 600px;
+    max-width: 100%;
   `,
 };
 
@@ -69,14 +68,16 @@ const NumPadTrainer: React.FC = () => {
 
   const reset = () => {
     setOffset(-LOOK_BACK);
-    setNumbers(() => new Array(2 + LOOK_AHEAD).fill(0).map(() => random(0, 9)))
-  }
+    setNumbers(() => new Array(2 + LOOK_AHEAD).fill(0).map(() => random(0, 9)));
+  };
   return (
     <Box display="flex" width="100%" height="100%" alignItems="center" justifyContent="center">
-      <Card>
+      <Card css={styles.card}>
         <CardContent>
-          <Stack>
-            <NumberDisplay numbers={numbers} offset={offset} />
+          <Stack alignItems="center">
+            <Typography>{offset + LOOK_BACK}</Typography>
+            <Divider flexItem />
+            <NumberDisplay numbers={numbers} offset={offset} transitionTime={0} />
             <Button onClick={reset}>Reset</Button>
           </Stack>
         </CardContent>
@@ -90,17 +91,21 @@ type NumberDisplayProps = {
   /** A list of length {@link LOOK_BACK} + 1 + {@link LOOK_AHEAD} */
   numbers: number[];
   offset: number;
+  transitionTime: number;
 };
 
 const NumberDisplay: React.FC<NumberDisplayProps> = (props) => {
-  const { numbers, offset } = props;
+  const { numbers, offset, transitionTime } = props;
   return (
     <Box css={styles.viewport}>
       <Box css={styles.numberCarousel}>
         {numbers.map((num, i) => (
           <span
             key={offset + i}
-            style={{ left: `${getLeftForIndex(i - Math.min(offset, 0))}px` }}
+            style={{
+              left: `${getLeftForIndex(i - Math.min(offset, 0))}px`,
+              transition: getTransition(transitionTime),
+            }}
             css={[
               styles.number,
               i === LOOK_BACK + Math.min(0, offset) ? styles.bigNumber : styles.smallNumber,
@@ -121,3 +126,6 @@ const getLeftForIndex = (i: number) => {
     Math.max(0, i - LOOK_BACK - 1) * SMALL_WIDTH
   );
 };
+
+const getTransition = (animationTime: number) =>
+  `left ${animationTime}s, font-size ${animationTime}s, color ${animationTime}s`;
